@@ -67,7 +67,7 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="server">Neo4j 服务端</link>
+          <link linkend="server">Neo4j 服务器</link>
         </para>
       </listitem>
       <listitem>
@@ -80,7 +80,7 @@
 </abstract>
 
 <legalnotice>
-  <title>License: Creative Commons 3.0</title>
+  <title>许可证: Creative Commons 3.0</title>
   <simpara>This book is presented in open source and licensed through
     Creative Commons 3.0.
     You are free to copy, distribute, transmit,
