@@ -1,0 +1,122 @@
+
+[source, bash]
+-----
+ # create the Thomas Andersson node
+ neo4j-sh (0)$ mkrel -t ROOT -c -v
+ Node (1) created
+ Relationship [:ROOT,0] created
+ 
+
+ # go to the new node
+ neo4j-sh (0)$ cd 1
+
+ # set the name property
+ neo4j-sh (1)$ set name "Thomas Andersson"
+
+ # create Thomas direct friends
+ neo4j-sh (Thomas Andersson,1)$ mkrel -t KNOWS -cv
+ Node (2) created
+ Relationship [:KNOWS,1] created
+ 
+
+ # go to the new node
+ neo4j-sh (Thomas Andersson,1)$ cd 2
+
+ # set the name property
+ neo4j-sh (2)$ set name "Trinity"
+
+ # go back in the history stack
+ neo4j-sh (Trinity,2)$ cd ..
+
+ # create Thomas direct friends
+ neo4j-sh (Thomas Andersson,1)$ mkrel -t KNOWS -cv
+ Node (3) created
+ Relationship [:KNOWS,2] created
+ 
+
+ # go to the new node
+ neo4j-sh (Thomas Andersson,1)$ cd 3
+
+ # set the name property
+ neo4j-sh (3)$ set name "Morpheus"
+
+ # create relationship to Trinity
+ neo4j-sh (Morpheus,3)$ mkrel -t KNOWS 2
+
+ # list the relationships of node 3
+ neo4j-sh (Morpheus,3)$ ls -rv
+ (me)-[:KNOWS,3]->(Trinity,2)
+ (me)<-[:KNOWS,2]-(Thomas Andersson,1)
+ 
+
+ # change the current position to relationship #2
+ neo4j-sh (Morpheus,3)$ cd -r 2
+
+ # set the age property on the relationship
+ neo4j-sh [:KNOWS,2]$ set -t int age 3
+
+ # back to Morpheus
+ neo4j-sh [:KNOWS,2]$ cd ..
+
+ # next relationsip
+ neo4j-sh (Morpheus,3)$ cd -r 3
+
+ # set the age property on the relationship
+ neo4j-sh [:KNOWS,3]$ set -t int age 90
+
+ # position to the start node of the current relationship
+ neo4j-sh [:KNOWS,3]$ cd start
+
+ # new node
+ neo4j-sh (Morpheus,3)$ mkrel -t KNOWS -c
+
+ # list relationships on the current node
+ neo4j-sh (Morpheus,3)$ ls -r
+ (me)-[:KNOWS]->(Trinity,2)
+ (me)-[:KNOWS]->(4)
+ (me)<-[:KNOWS]-(Thomas Andersson,1)
+ 
+
+ # go to Cypher
+ neo4j-sh (Morpheus,3)$ cd 4
+
+ # set the name
+ neo4j-sh (4)$ set name Cypher
+
+ # create new node from Cypher
+ neo4j-sh (Cypher,4)$ mkrel -ct KNOWS
+
+ # list relationships
+ neo4j-sh (Cypher,4)$ ls -r
+ (me)-[:KNOWS]->(5)
+ (me)<-[:KNOWS]-(Morpheus,3)
+ 
+
+ # go to the Agent Smith node
+ neo4j-sh (Cypher,4)$ cd 5
+
+ # set the name
+ neo4j-sh (5)$ set name "Agent Smith"
+
+ # outgoing relationship and new node
+ neo4j-sh (Agent Smith,5)$ mkrel -cvt CODED_BY
+ Node (6) created
+ Relationship [:CODED_BY,6] created
+ 
+
+ # go there
+ neo4j-sh (Agent Smith,5)$ cd 6
+
+ # set the name
+ neo4j-sh (6)$ set name "The Architect"
+
+ # go to the first node in the history stack
+ neo4j-sh (The Architect,6)$ cd
+
+ # Morpheus' friends, looking up Morpheus by name in the Neo4j autoindex
+ neo4j-sh (0)$ start morpheus = node:node_auto_index(name='Morpheus') match morpheus-[:KNOWS]-zionist return zionist.name
+
+ # Morpheus' friends, looking up Morpheus by name in the Neo4j autoindex
+ > cypher 1.5 start morpheus = node:node_auto_index(name='Morpheus') match morpheus-[:KNOWS]-zionist return zionist.name
+
+-----
