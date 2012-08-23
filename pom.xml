@@ -10,16 +10,17 @@
   <groupId>org.neo4j.doc</groupId>
   <artifactId>neo4j-manual</artifactId>
   <version>1.8-SNAPSHOT</version>
-  <name>Neo4j - Reference Manual</name>
-  <description>Neo4j Reference Manual.</description>
+  <name>Neo4j - 简体中文手册</name>
+  <description>Neo4j 简体中文手册.</description>
   <url>http://components.neo4j.org/${project.artifactId}/${project.version}</url>
   <packaging>pom</packaging>
 
   <properties>
     <short-name>manual</short-name>
-    <docs.sources>${project.build.directory}/docs</docs.sources>
-    <docs.sourcecode>${project.build.directory}/sources</docs.sourcecode>
-    <docs.test-sources>${project.build.directory}/test-sources</docs.test-sources>
+    <local.repo>${project.build.directory}/../local-repo</local.repo>
+    <docs.sources>${local.repo}/docs</docs.sources>
+    <docs.sourcecode>${local.repo}/sources</docs.sourcecode>
+    <docs.test-sources>${local.repo}/test-sources</docs.test-sources>
     <docs.images>${project.build.outputDirectory}/images</docs.images>
     <neo4j.version>1.8-SNAPSHOT</neo4j.version>
   </properties>
@@ -38,6 +39,7 @@
   </licenses>
 
   <dependencies>
+    <!--
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j</artifactId>
@@ -213,6 +215,7 @@
       <classifier>test-sources</classifier>
       <scope>provided</scope>
     </dependency>
+    -->
   </dependencies>
 
   <build>

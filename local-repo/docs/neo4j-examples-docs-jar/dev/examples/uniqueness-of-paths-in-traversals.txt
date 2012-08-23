@@ -1,0 +1,113 @@
+[[examples-uniqueness-of-paths-in-traversals]]
+Uniqueness of Paths in traversals
+=================================
+
+This example is demonstrating the use of node uniqueness.
+Below an imaginary domain graph with Principals
+that own pets that are descendant to other pets.
+
+.Descendants Example Graph
+["dot", "Descendants-Example-Graph-Uniqueness-of-Paths-in-traversals.svg", "neoviz", ""]
+----
+  N1 [
+    label = "{Node\[1\]|name = \'Pet1\'\l}"
+  ]
+  N2 [
+    label = "{Node\[2\]|name = \'Pet2\'\l}"
+  ]
+  N3 [
+    label = "{Node\[3\]|name = \'Pet0\'\l}"
+  ]
+  N3 -> N1 [
+    color = "#2e3436"
+    fontcolor = "#2e3436"
+    label = "descendant\n"
+  ]
+  N3 -> N2 [
+    color = "#2e3436"
+    fontcolor = "#2e3436"
+    label = "descendant\n"
+  ]
+  N3 -> N4 [
+    color = "#2e3436"
+    fontcolor = "#2e3436"
+    label = "descendant\n"
+  ]
+  N4 [
+    label = "{Node\[4\]|name = \'Pet3\'\l}"
+  ]
+  N5 [
+    label = "{Node\[5\]|name = \'Principal1\'\l}"
+  ]
+  N5 -> N1 [
+    color = "#4e9a06"
+    fontcolor = "#4e9a06"
+    label = "owns\n"
+  ]
+  N5 -> N4 [
+    color = "#4e9a06"
+    fontcolor = "#4e9a06"
+    label = "owns\n"
+  ]
+  N6 [
+    label = "{Node\[6\]|name = \'Principal2\'\l}"
+  ]
+  N6 -> N2 [
+    color = "#4e9a06"
+    fontcolor = "#4e9a06"
+    label = "owns\n"
+  ]
+----
+
+In order to return all descendants 
+of +Pet0+ which have the relation +owns+ to +Principal1+ (+Pet1+ and +Pet3+),
+the Uniqueness of the traversal needs to be set to 
++NODE_PATH+ rather than the default +NODE_GLOBAL+ so that nodes
+can be traversed more that once, and paths that have
+different nodes but can have some nodes in common (like the
+start and end node) can be returned.
+
+[snippet,java]
+----
+component=neo4j-examples
+source=org/neo4j/examples/UniquenessOfPathsTest.java
+classifier=test-sources
+tag=traverser
+----
+
+This will return the following paths:
+
+[source]
+----
+(3)--[descendant,0]-->(1)<--[owns,3]--(5)
+(3)--[descendant,2]-->(4)<--[owns,5]--(5)
+
+----
+
+In the default `path.toString()` implementation, `(1)--[knows,2]-->(4)` denotes 
+a node with ID=1 having a relationship with ID 2 or type `knows` to a node with ID-4.
+
+Let's create a new +TraversalDescription+ from the old one,
+having +NODE_GLOBAL+ uniqueness to see the difference.
+
+TIP: The +TraversalDescription+ object is immutable,
+     so we have to use the new instance returned
+     with the new uniqueness setting.
+
+[snippet,java]
+----
+component=neo4j-examples
+source=org/neo4j/examples/UniquenessOfPathsTest.java
+classifier=test-sources
+tag=traverseNodeGlobal
+----
+
+Now only one path is returned:
+
+[source]
+----
+(3)--[descendant,0]-->(1)<--[owns,3]--(5)
+
+----
+
+
