@@ -1,4 +1,4 @@
-The Neo4j Manual v{revnumber}
+Neo4j简体中文手册 v{revnumber}
 =============================
 
 :neo4j-version: {revnumber}
