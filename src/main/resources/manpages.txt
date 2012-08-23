@@ -3,7 +3,7 @@
 联机帮助页
 ========
 
-Neo4j Unix 手册包括下面一些页面.
+Neo4j Unix 手册包括下面一些页面。
 
 :leveloffset: 1
 

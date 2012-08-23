@@ -1,15 +1,12 @@
 [[tutorial-comparing-models]]
-Comparing Database Models
+比较各种数据库模型
 =========================
 
-A Graph Database stores data structured in the Nodes and Relationships of a graph. 
-How does this compare to other persistence models? 
-Because a graph is a generic structure, let's compare how a few models would look in a graph.
+图数据库通过在一张图上存储节点和关系来持久化我们的数据结构。比起其他持久化数据模型如何呢？因为图是一种常规数据结构，让我们与其他的进行一下比较试试看。
 
-== A Graph Database transforms a RDBMS ==
+== 从图数据库转换成 RDBMS ==
 
-Topple the stacks of records in a relational database while keeping all the relationships, and you'll see a graph. 
-Where an RDBMS is optimized for aggregated data, Neo4j is optimized for highly connected data. 
+将所有的数据用竖立的堆栈表示，并且保持他们直接的关系，你可以看到下面一张图。一个 RDBMS 被优化用于聚合数据，而Neo4j擅长于高度关联的数据。
 
 .RDBMS
 ["dot", "graphdb-compare-rdbms.svg", "meta", scaledwidth="40%"]
@@ -50,7 +47,7 @@ C:3 -> B:2
 C:3 -> B:6
 ----
 
-.Graph Database as RDBMS
+.用图实现RDBMS模型
 ["dot", "graphdb-compare-rdbms-g.svg", "meta", scaledwidth="100%"]
 ----
 edge [arrowhead="none" arrowtail="none"]
@@ -80,13 +77,11 @@ C3 -> B6
 ----
 
 
-== A Graph Database elaborates a Key-Value Store ==
+== 从图数据库转换成Key-Value数据库 ==
 
-A Key-Value model is great for lookups of simple values or lists. 
-When the values are themselves interconnected, you've got a graph. 
-Neo4j lets you elaborate the simple data structures into more complex, interconnected data.
+Key-Value模型适合用于简单的数据或者列表。当数据之间不断交互关联时，你更需要一张图模型。Neo4j让你能惊醒制作简单的数据结构到复杂，互相连接的数据。
 
-.Key-Value Store
+.Key-Value 存储模型
 ["dot", "graphdb-compare-kvstore.svg", "meta"]
 ----
 rankdir="LR"
@@ -101,10 +96,9 @@ K:2 -> V2:v
 K:3 -> V3:v
 ----
 
-+K*+ represents a key, +V*+ a value.
-Note that some keys point to other keys as well as plain values.
+K* 代表一个键，V* 代表一个值。请注意，某些键指向其他键以及普通值。
 
-.Graph Database as Key-Value Store
+.用图实现 Key-Value 模型
 ["dot", "graphdb-compare-kvstore-g.svg", "meta"]
 ----
 rankdir="LR"
@@ -130,20 +124,16 @@ K2 -> gV2
 K3 -> gV3
 ----
 
-== A Graph Database relates Column-Family ==
+== 从图数据库转换成列数据库 ==
 
-Column Family (BigTable-style) databases are an evolution of key-value,  using "families" to allow grouping of rows.
-Stored in a graph, the families could become hierarchical, and the relationships among data becomes explicit.
+列式（大表）数据库是 Key-Value模型的升级，用 “”来允许行数据增加。如果存储一张图，这个表将是分层的，关系也是非常明确的。
 
 
-== A Graph Database navigates a Document Store ==
+== 从图数据库转换成文档型数据库 ==
 
-The container hierarchy of a document database accommodates nice, schema-free data that can easily be represented as a tree. 
-Which is of course a graph. 
-Refer to other documents (or document elements) within that tree and you have a more expressive representation of the same data. 
-When in Neo4j, those relationships are easily navigable.
+文档型数据库用文档进行层次划分，而自由的数据规划也很容易被表示成一颗树。成长为一张图的话，文档之间的关联你需要更有代表性的数据结构来存储，而在Neo4j中，这些关系是非常容易处理的。
 
-.Document Store
+.文档型数据库
 ["dot", "graphdb-compare-docdb.svg", "meta", scaledwidth="75%"]
 ----
 subgraph cluster_0 {
@@ -178,9 +168,9 @@ subgraph cluster_2 {
 }
 ----
 
-+D+=Document, +S+=Subdocument, +V+=Value, +D2/S2+ = reference to subdocument in (other) document.
++D+=文档, +S+=子文档, +V+=值, +D2/S2+ = 关联到（其他）文档的索引。
 
-.Graph Database as Document Store
+.从图数据库转换成文档型数据库
 ["dot", "graphdb-compare-docdb-g.svg", "meta", scaledwidth="75%"]
 ----
 rankdir="LR"
