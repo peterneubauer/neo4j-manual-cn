@@ -39,6 +39,7 @@
   </licenses>
 
   <dependencies>
+    <!--
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j</artifactId>
@@ -214,6 +215,7 @@
       <classifier>test-sources</classifier>
       <scope>provided</scope>
     </dependency>
+    -->
   </dependencies>
 
   <build>
