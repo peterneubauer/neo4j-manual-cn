@@ -1,4 +1,4 @@
-.Hello World Graph
+.Hello World 图数据库实例
 ["dot", "Hello-World-Graph-java.svg", "neoviz", ""]
 ----
   N1 [
