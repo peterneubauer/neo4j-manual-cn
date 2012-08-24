@@ -1,20 +1,20 @@
 [[tutorials-java-embedded-traversal]]
-Traversal
+遍历（Traversal）查询数据
 =========
 
-For reading about traversals, see <<tutorial-traversal>>.
+为了阅读关于遍历（Traversal）的内容，请参考章节：<<tutorial-traversal>>。
 
-For more examples of traversals, see <<data-modeling-examples>>.
+为了了解更多关于遍历（Traversal）的范例，请参考章节：<<data-modeling-examples>>。
 
 == The Matrix ==
 
-The traversals from the Matrix example above, this time using the new traversal API:
+来自上面Matrix范例中的遍历查询，这次我们使用一个新的遍历API：
 
 [TIP]
-The source code of the examples is found here:
+源代码下载地址：
 https://github.com/neo4j/community/blob/{neo4j-git-tag}/embedded-examples/src/main/java/org/neo4j/examples/NewMatrix.java[NewMatrix.java]
 
-.Friends and friends of friends
+.朋友以及朋友的朋友
 [snippet,java]
 ----
 component=neo4j-examples
@@ -23,7 +23,7 @@ source=org/neo4j/examples/NewMatrix.java
 tag=get-friends
 ----
 
-Let's perform the actual traversal and print the results:
+让我们做一次实际的遍历查询并打印查询结果：
 
 [snippet,java]
 ----
@@ -33,7 +33,7 @@ source=org/neo4j/examples/NewMatrix.java
 tag=friends-usage
 ----
 
-Which will give us the following output:
+输出结果：
 
 include::matrix-traversal-java-new-friends.txt[]
 
@@ -46,7 +46,7 @@ source=org/neo4j/examples/NewMatrix.java
 tag=find-hackers
 ----
 
-Print out the result:    
+打印最终的结果： 
 
 [snippet,java]
 ----
@@ -56,17 +56,17 @@ source=org/neo4j/examples/NewMatrix.java
 tag=find--hackers-usage
 ----
 
-Now we know who coded the Matrix:
+现在我们知道是谁编码了Matrix：
 
 include::matrix-traversal-java-new-hackers.txt[]
 
 
-=== Walking an ordered path ===
+=== 跟随一条有序路径遍历 ===
 
-This example shows how to use a path context holding a representation of a path.
+这个范例展示了如何使用一个路径上下文来管理一条路径的情况。
 
 [TIP]
-The source code of this example is found here:
+源代码下载地址：
 https://github.com/neo4j/community/blob/{neo4j-git-tag}/embedded-examples/src/main/java/org/neo4j/examples/orderedpath/OrderedPath.java[OrderedPath.java]
 
 .Create a toy graph
@@ -90,10 +90,11 @@ C -> D [label="REL3" color="EDGEHIGHLIGHT" fontcolor="EDGEHIGHLIGHT"]
 // include::ordered-path-java-graph.txt[]
 // then, also include the property setting in the code.
 
-Now, the order of relationships (+REL1+ -> +REL2+ -> +REL3+) is stored in an +ArrayList+.
-Upon traversal, the +Evaluator+ can check against it to ensure that only paths are included and returned that have the predefined order of relationships:
+现在，管理的顺序（+REL1+ -> +REL2+ -> +REL3+）已经存储在一个+ArrayList+中。
 
-.Define how to walk the path
+通过遍历，评估器将检查他，并确保路径的正确性，并返回期望的有序路径：
+
+.定义如何遍历这条路径
 [snippet,java]
 ----
 component=neo4j-examples
@@ -102,7 +103,7 @@ source=org/neo4j/examples/orderedpath/OrderedPath.java
 tag=walkOrderedPath
 ----
 
-.Perform the traversal and print the result
+.做遍历查询并返回结果
 [snippet,java]
 ----
 component=neo4j-examples
@@ -111,12 +112,12 @@ source=org/neo4j/examples/orderedpath/OrderedPath.java
 tag=printPath
 ----
 
-Which will output:
+输出结果：
 
 include::ordered-path-java-output.txt[]
 
-In this case we use a custom class to format the path output.
-This is how it's done:
+在这个例子中，我们将定义一个自定义类来格式化输出。
+下面展示如何实现：
 
 [snippet,java]
 ----
@@ -126,26 +127,25 @@ source=org/neo4j/examples/orderedpath/OrderedPath.java
 tag=pathPrinter
 ----
 
-For options regarding output of a +Path+, see the 
-http://components.neo4j.org/neo4j/{neo4j-version}/apidocs/org/neo4j/kernel/Traversal.html[Traversal] class.
+关于_路径_输出的规则信息,请参考：http://components.neo4j.org/neo4j/{neo4j-version}/apidocs/org/neo4j/kernel/Traversal.html[Traversal] 类。
 
 
 [NOTE]
-The following examples use a deprecated traversal API.
-It shares the underlying implementation with the new traversal API, so performance-wise they are equal.
-The functionality it provides is very limited in comparison. 
+下面的范例使用了一个废弃的traversal API。
+它分享了新traversal API的潜在实现，因此他们的性能表现是一样的。
+它提供的功能比较起来非常有限。
 
-== Old traversal API ==
+== 老的traversal API ==
 
-This is the first graph we want to traverse into:
+这是我们想遍历的第一个图数据库:
 
 image::examples-matrix.png[title="Matrix node space view", scaledwidth="75%"]
 
 [TIP]
-The source code of the examples is found here:
+源代码下载地址：
 https://github.com/neo4j/community/blob/{neo4j-git-tag}/embedded-examples/src/main/java/org/neo4j/examples/Matrix.java[Matrix.java]
 
-.Friends and friends of friends
+.朋友以及朋友的朋友
 [snippet,java]
 ----
 component=neo4j-examples
@@ -154,7 +154,7 @@ source=org/neo4j/examples/Matrix.java
 tag=get-friends
 ----
 
-Let's perform the actual traversal and print the results:
+让我们做一次遍历并返回结果:
 
 [snippet,java]
 ----
@@ -164,11 +164,11 @@ source=org/neo4j/examples/Matrix.java
 tag=friends-usage
 ----
 
-Which will give us the following output:
+打印结果:
 
 include::matrix-traversal-java-friends.txt[]
 
-.Who coded the Matrix?
+.谁制作了Matrix?
 [snippet,java]
 ----
 component=neo4j-examples
@@ -177,7 +177,7 @@ source=org/neo4j/examples/Matrix.java
 tag=find-hackers
 ----
     
-Print out the result:    
+打印结果：   
 
 [snippet,java]
 ----
@@ -187,6 +187,6 @@ source=org/neo4j/examples/Matrix.java
 tag=find--hackers-usage
 ----
 
-Now we know who coded the Matrix:
+现在我们知道谁制作了Matrix：
 
 include::matrix-traversal-java-hackers.txt[]

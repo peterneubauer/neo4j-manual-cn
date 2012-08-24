@@ -1,11 +1,11 @@
 [[tutorials]]
-Tutorials
+教程
 =========
 
 [partintro]
 --
-The tutorial part describes how to set up your environment, and write programs using Neo4j.
-It takes you from Hello World to advanced usage of graphs.
+教程部分描述了如何建立你的环境，以及用Neo4j写程序。
+它将带你从简单的Hello World到更高级的图数据库应用。
 --
 
 :leveloffset: 1

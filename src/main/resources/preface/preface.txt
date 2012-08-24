@@ -1,35 +1,38 @@
 [preface]
 [[preface]]
-Preface
+前言
 =======
 
-This is the reference manual for Neo4j version {neo4j-version}, written by the Neo4j Team.
+这是由Neo4j团队书写的Neo4j v{neo4j-version}的参考手册。
 
-The main parts of the manual are:
 
-* <<introduction>> -- introducing graph database concepts and Neo4j.
-* <<tutorials>> -- learn how to use Neo4j.
-* <<reference-documentation>> -- detailed information on Neo4j.
-* <<operations>> -- how to install and maintain Neo4j.
-* <<tools>> -- guides on tools.
-* <<community>> -- getting help from, contributing to.
-* <<manpages>> -- command line documentation.
-* <<questions>> -- common questions.
+手册主要包括以下几部分：
 
-The material is practical, technical, and focused on answering specific questions. 
-It addresses how things work, what to do and what to avoid to successfully run Neo4j in a production environment.
+* <<introduction>> -- 介绍图数据库的概念以及Neo4j。
+* <<tutorials>> -- 学习如何使用Neo4j。
+* <<reference-documentation>> -- Neo4j的细节信息。
+* <<operations>> -- 如何安装和维护Neo4j。
+* <<tools>> -- 手册中用到的工具。
+* <<community>> -- 获取帮助或者提供贡献。
+* <<manpages>> -- 命令行文档。
+* <<questions>> -- 常见问题。
+
+
+这些内容是经过实践的，技术性的，并关注于解答特别的问题。
+它告知我们在一个实际运行Neo4j的生产环境中如何工作，做什么以及不做什么，来保证我们项目的成功运行。
  
-The goal is to be thumb-through and rule-of-thumb friendly.
+我们的目标是使用方便和易于经验规则的吸收。
 
-Each section should stand on its own, so you can hop right to whatever interests you.
-When possible, the sections distill "rules of thumb" which you can keep in mind whenever you wander out of the house without this manual in your back pocket.
-
-The included code examples are executed when Neo4j is built and tested.
-Also, the REST API request and response examples are captured from real interaction with a Neo4j server.
-Thus, the examples are always in sync with Neo4j.
+每个片段应该都只包括独立的内容，因此你可以跳到任何你感兴趣的部分阅读。
+当你在房子周围散步没带手册时，这些章节也可以提取"经验规则"让你记住。
 
 
-_Who should read this?_
+这还包括在Neo4j编译和单元测试时执行的范例代码。REST API输入输出范例也与一个Neo4j服务器进行真实的交互。
+因此，范例总是与Neo4j同步的。
 
-The topics should be relevant to architects, administrators, developers and operations personnel.
+
+_谁需要阅读这个文档?_
+
+这些话题适合相关的架构师，管理员，开发人员和操作人员阅读。
+
 

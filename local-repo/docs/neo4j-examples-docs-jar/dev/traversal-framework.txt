@@ -1,5 +1,5 @@
 [[tutorial-traversal]]
-The Traversal Framework
+遍历（Traversal）查询框架
 =======================
 
 

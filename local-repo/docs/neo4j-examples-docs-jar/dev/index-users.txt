@@ -1,19 +1,19 @@
 [[tutorials-java-embedded-index]]
-User database with index
+带有索引的用户数据库
 ========================
 
-You have a user database, and want to retrieve users by name.
-To begin with, this is the structure of the database we want to create:
+你有了一个用户数据库，并且希望通过用户名查询用户。
+首先，这是一个我们想创建的数据库结构：
 	
-image::users.png[title="Node space view of users", scaledwidth="100%"]
+image::users.png[title="所有用户的节点图", scaledwidth="100%"]
 
-That is, the reference node is connected to a users-reference node to which all users are connected.
+起点（0）与用户索引节点相连，而真正的用户都挂在用户索引节点下面，方便归类。
 
 [TIP]
-The source code used in this example is found here:
+源代码下载：
 https://github.com/neo4j/community/blob/{neo4j-git-tag}/embedded-examples/src/main/java/org/neo4j/examples/EmbeddedNeo4jWithIndexing.java[EmbeddedNeo4jWithIndexing.java]
 
-To begin with, we define the relationship types we want to use:
+首先，我们定义我们将用到的关系类型：
 
 [snippet,java]
 ----
@@ -23,7 +23,7 @@ classifier=sources
 tag=createRelTypes
 ----
 
-Then we have created two helper methods to handle user names and adding users to the database:
+然后，我们创建两个有用的方法来帮助处理用户名并将用户新增到数据库中：
     
 [snippet,java]
 ----
@@ -33,7 +33,7 @@ classifier=sources
 tag=helperMethods
 ----
 
-The next step is to start the database server:
+下面，我们将启动数据库：
 
 [snippet,java]
 ----
@@ -43,7 +43,7 @@ classifier=sources
 tag=startDb
 ----
 
-It's time to add the users:
+是时候新增用户了：
     
 [snippet,java]
 ----
@@ -53,7 +53,7 @@ classifier=sources
 tag=addUsers
 ----
 
-And here's how to find a user by Id:
+下面演示了如何通过用户ID找到用户：
 
 [snippet,java]
 ----

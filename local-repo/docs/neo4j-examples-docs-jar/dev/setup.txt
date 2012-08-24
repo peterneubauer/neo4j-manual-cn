@@ -1,42 +1,43 @@
 [[tutorials-java-embedded-setup]]
-Include Neo4j in your project
+将Neo4j引入到你的工程中
 =============================
+为你的平台选择一个适合的<<editions,发行版本>>后，通过嵌入Neo4j的jar到你的应用中来引入Neo4j。
 
-After selecting the appropriate <<editions,edition>> for your platform, embed Neo4j in your Java application by including the Neo4j library jars in your build.
-The following sections will show how to do this by either altering the build path directly or by using dependency management.
+下面将为你介绍如何通过更改生成路径或者添加依赖的方式引入Neo4j。
 
-== Add Neo4j to the build path ==
 
-Get the Neo4j libraries from one of these sources:
+== 增加Neo4j到生成路径中 ==
 
-* Extract a Neo4j http://neo4j.org/download/[download] zip/tarball, and use the 'jar' files found in the 'lib/' directory.
-* Use the 'jar' files available from http://search.maven.org/#search|ga|1|g%3A%22org.neo4j%22[Maven Central Repository]
+从下面这些源中获取Neo4j库文件:
 
-Add the jar files to your project:
+* 解压Neo4j的压缩包（http://neo4j.org/download/[下载]），从解压包里面的lib/目录查找jar文件。
+* 从http://search.maven.org/#search|ga|1|g%3A%22org.neo4j%22[Maven Central Repository]获取合适的jar文件。
 
-JDK tools::
- Append to +-classpath+
+
+增加jar文件到你的项目工程中：
+
+JDK工具::
+增加到 +-classpath+
 Eclipse::
- * Right-click on the project and then go _Build Path -> Configure Build Path._
-   In the dialog, choose _Add External JARs_, browse to the Neo4j 'lib/' directory and select all of the jar files.
- * Another option is to use http://help.eclipse.org/indigo/index.jsp?topic=/org.eclipse.jdt.doc.user/reference/preferences/java/buildpath/ref-preferences-user-libraries.htm[User Libraries].
+ * 右键工程然后选择构造路径 -> 置构造路径。在对话框中，选择_增加外部JARs_，浏览到Neo4j 的‘lib’目录选择所有的jar文件。
+ * 使用http://help.eclipse.org/indigo/index.jsp?topic=/org.eclipse.jdt.doc.user/reference/preferences/java/buildpath/ref-preferences-user-libraries.htm[User Libraries]设置其他选项。
 IntelliJ IDEA::
- See http://www.jetbrains.com/idea/webhelp/libraries-global-libraries-and-the-configure-library-dialog.html[Libraries, Global Libraries, and the Configure Library dialog]
+ 查看http://www.jetbrains.com/idea/webhelp/libraries-global-libraries-and-the-configure-library-dialog.html[Libraries, Global Libraries, and the Configure Library dialog]。
 NetBeans::
- * Right-click on the _Libraries_ node of the project, choose _Add JAR/Folder_, browse to the Neo4j 'lib/' directory and select all of the jar files.
- * You can also handle libraries from the project node, see http://netbeans.org/kb/docs/java/project-setup.html#projects-classpath[Managing a Project's Classpath].
+ * 右键点击 工程中的节点_Libraries_, 选择_Add JAR/Folder_, 浏览到Neo4j的‘lib/’目录并选择所有的jar文件。
+ * 你也可以从工程角度管理, 查看http://netbeans.org/kb/docs/java/project-setup.html#projects-classpath[Managing a Project's Classpath]。
 
 
-== Add Neo4j as a dependency ==
+== 将Neo4j作为一个依赖引入 ==
 
-For an overview of the main Neo4j artifacts, see <<editions>>.
-The artifacts listed there are top-level artifacts that will transitively include the actual Neo4j implementation.
-You can either go with the top-level artifact or include the individual components directly.
-The examples included here use the top-level artifact approach.
+为了对主要的Neo4j构件有一个总览，请参考：<<editions>>。
+列举在这里面的这些构件将会被引入到实际的Neo4j实现中。
+你要么依附这些顶级构件，或者直接引入私有组件。
+包括在这的范例使用的是顶级构件的方案。
 
 === Maven ===
 
-.Maven dependency
+.Maven的依赖
 ["source","xml","unnumbered","2",presubs="attributes"]
 --------------------------------------------
 <project>
@@ -52,16 +53,16 @@ The examples included here use the top-level artifact approach.
 ...
 </project>
 --------------------------------------------
-_Where the +artifactId+ is found in <<editions>>._
+_+artifactId+可以在<<editions>>找到。_
 
-=== Eclipse and Maven ===
+=== Eclipse和Maven ===
 
-For development in http://www.eclipse.org[Eclipse], it is recommended to install the http://www.eclipse.org/m2e/[m2e plugin] and let Maven manage the project build classpath instead, see above.
-This also adds the possibility to build your project both via the command line with Maven and have a working Eclipse setup for development.
+为了在http://www.eclipse.org[Eclipse]中进行开发，推荐安装http://www.eclipse.org/m2e/[m2e plugin]和让Maven管理工程的生成类路径，看上面。
+这也增加了使用Maven在命令行构建你的工程和搭建一个Eclipse开发环境的能力。
 
 === Ivy ===
 
-Make sure to resolve dependencies from Maven Central, for example using this configuration in your 'ivysettings.xml' file:
+确保能从Maven Central解析依赖，比如在你的‘ivysettings.xml‘使用下面的配置：
 
 [source,xml]
 ----
@@ -78,7 +79,7 @@ Make sure to resolve dependencies from Maven Central, for example using this con
 </ivysettings>
 ----
 
-With that in place you can add Neo4j to the mix by having something along these lines to your 'ivy.xml' file:
+你可以新增Neo4j到你的ivy.xml文件中：
 
 ["source","xml","unnumbered","2",presubs="attributes"]
 ----
@@ -90,11 +91,11 @@ With that in place you can add Neo4j to the mix by having something along these 
 </dependencies>
 ..
 ----
-_Where the +name+ is found in <<editions>>._
+_+name+可以在<<editions>>找到。_
 
 === Gradle ===
 
-The example below shows an example gradle build script for including the Neo4j libraries.
+下面的范例演示了一个直接构建脚本范例，用于引入Neo4j库文件。
 
 ["source","groovy","unnumbered","2",presubs="attributes"]
 ----
@@ -107,13 +108,13 @@ dependencies {
    compile "org.neo4j:neo4j:$\{neo4jVersion}"
 }
 ----
-_Where the coordinates (+org.neo4j:neo4j+ in the example) are found in <<editions>>._
+_Maven坐标（在范例中的+org.neo4j:neo4j+）可以在<<editions>>找到。_
 
 
 [[tutorials-java-embedded-setup-startstop]]
-== Starting and stopping ==
+== 启动和停止 ==
 
-To create a new database or ópen an existing one you instantiate an +http://components.neo4j.org/neo4j/{neo4j-version}/apidocs/org/neo4j/kernel/EmbeddedGraphDatabase.html[EmbeddedGraphDatabase]+.
+为了创建一个新的数据库或者打开一个已经存在的，你做了一个示例：+http://components.neo4j.org/neo4j/{neo4j-version}/apidocs/org/neo4j/kernel/EmbeddedGraphDatabase.html[EmbeddedGraphDatabase]+。
 
 [snippet,java]
 ----
@@ -124,10 +125,9 @@ tag=startDb
 ----
 
 [NOTE]
-The +EmbeddedGraphDatabase+ instance can be shared among multiple threads.
-Note however that you can't create multiple instances pointing to the same database.
++EmbeddedGraphDatabase+数据库可以在多进程中共享。注意你不能创建多个连接实例指向同一个数据源。
 
-To stop the database, call the +shutdown()+ method:
+要停止一个数据库，可以调用方法+shutdown()+：
 
 [snippet,java]
 ----
@@ -137,7 +137,7 @@ classifier=sources
 tag=shutdownServer
 ----
 
-To make sure Neo4j is shut down properly you can add a shutdown hook:
+为了确保Neo4j确实被关闭了，可以新增一个hook：
 
 [snippet,java]
 ----
@@ -146,10 +146,9 @@ source=org/neo4j/examples/EmbeddedNeo4j.java
 classifier=sources
 tag=shutdownHook
 ----
+如果你想通过_只读_的方式访问的你的数据库，请使用+http://components.neo4j.org/neo4j/{neo4j-version}/apidocs/org/neo4j/kernel/EmbeddedReadOnlyGraphDatabase.html[EmbeddedReadOnlyGraphDatabase]+。
 
-If you want a _read-only view_ of the database, use +http://components.neo4j.org/neo4j/{neo4j-version}/apidocs/org/neo4j/kernel/EmbeddedReadOnlyGraphDatabase.html[EmbeddedReadOnlyGraphDatabase]+. 
-
-To start Neo4j with configuration settings, a Neo4j properties file can be loaded like this:
+为了用配置文件来启动Neo4j,需要我们设置一个Neo4j配置文件，像下面这样：
 
 [snippet,java]
 ----
@@ -159,7 +158,7 @@ classifier=test-sources
 tag=startDbWithConfig
 ----
 
-Or you could of course create you own +Map<String, String>+ programatically and use that instead.
+或者你可以创建一个+Map<String, String>+来代替。
 
-For configuration settings, see <<embedded-configuration>>.
+了解更多的配置选项，请参考章节：<<embedded-configuration>>。
 

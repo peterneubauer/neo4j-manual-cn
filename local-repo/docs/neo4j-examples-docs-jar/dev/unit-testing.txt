@@ -1,13 +1,14 @@
 [[tutorials-java-unit-testing]]
-Basic unit testing
+基本的单元测试
 ==================
 
-The basic pattern of unit testing with Neo4j is illustrated by the following example.
+Neo4j的单元测试的基本功能将通过下面的范例来阐明。
 
-To access the Neo4j testing facilities you should have the +neo4j-kernel+ 'tests.jar' on the classpath during tests.
-You can download it from Maven Central: http://search.maven.org/#search|ga|1|g%3A%22org.neo4j%22%20AND%20a%3A%22neo4j-kernel%22[org.neo4j:neo4j-kernel].
+为了能访问Neo4j的测试功能，我们需要在测试期间新增+neo4j-kernel+的‘tests.jar’到类路径中。
+你可以通过从Maven Central: http://search.maven.org/#search|ga|1|g%3A%22org.neo4j%22%20AND%20a%3A%22neo4j-kernel%22[org.neo4j:neo4j-kernel].下载。
 
-Using Maven as a dependency manager you would typically add this dependency as:
+如果使用Maven来管理依赖，一般会像下面这样：
+
 
 .Maven dependency
 [source,xml]
@@ -28,16 +29,16 @@ Using Maven as a dependency manager you would typically add this dependency as:
 </project>
 --------------------------------------------
 
-_Where +$\{neo4j-version}+ is the desired version of Neo4j._
+_+$\{neo4j-version}+是Neo4j期望的版本号。_
 
-With that in place, we're ready to code our tests.
+下面，我们将开始单元测试。
 
 [TIP]
-For the full source code of this example see:
+完整源代码下载：
 https://github.com/neo4j/community/blob/{neo4j-git-tag}/embedded-examples/src/test/java/org/neo4j/examples/Neo4jBasicTest.java[Neo4jBasicTest.java]
 
 
-Before each test, create a fresh database:
+在每次测试启动之前，先创建数据库：
 
 [snippet,java]
 ----
@@ -47,7 +48,7 @@ classifier=test-sources
 tag=beforeTest
 ----
 
-After the test has executed, the database should be shut down:
+在测试结束后，我们将关闭数据库：
 
 [snippet,java]
 ----
@@ -57,7 +58,7 @@ classifier=test-sources
 tag=afterTest
 ----
 
-During a test, create nodes and check to see that they are there, while enclosing write operations in a transaction.
+比如一个测试用例，测试在一个事务中，创建节点并检查他们是否被正确创建到图中。
 
 [snippet,java]
 ----
@@ -67,7 +68,7 @@ classifier=test-sources
 tag=unitTest
 ----
 
-If you want to set configuration parameters at database creation, it's done like this:
+If you want to set configuration parameters at database creation, it's done like this：
 
 [snippet,java]
 ----

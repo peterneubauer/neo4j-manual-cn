@@ -1,9 +1,7 @@
 [[tutorials-java-embedded]]
-Using Neo4j embedded in Java applications
+在Java应用中使用Neo4j图数据库
 =========================================
-
-It's easy to use Neo4j embedded in Java applications.
-In this chapter you will find everything needed -- from setting up the environment to doing something useful with your data.
+在Java中使用Neo4j是非常方便的。在这个章节中，你将找到所有你想了解的 — 从基本环境的搭建到用你的数据做一些实际有用的事情。
 
 :leveloffset: 2
 

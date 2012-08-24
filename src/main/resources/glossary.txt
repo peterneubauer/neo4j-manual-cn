@@ -1,8 +1,8 @@
 [[glossary]]
 [glossary]
-Glossary
+词汇表
 ========
 
 [glossary]
 SNMP::
-  Simple Network Management Protocol. A widely used protocol to monitor applications, appliances and resources.
+  简单网络管理协议.一个广泛用于监控程序和资源的协议.
